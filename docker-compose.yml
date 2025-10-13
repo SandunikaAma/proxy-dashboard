@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend-server
+    container_name: proxy-backend
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./backend-server/users.db:/app/users.db
+    environment:
+      - PORT=3004
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: proxy-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
