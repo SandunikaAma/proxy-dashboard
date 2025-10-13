@@ -1,0 +1,25 @@
+{
+  "name": "backend-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "framer-motion": "^12.23.22",
+    "jsonwebtoken": "^9.0.2",
+    "react-icons": "^5.5.0",
+    "shadcn-ui": "^0.9.5",
+    "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7"
+  }
+}
