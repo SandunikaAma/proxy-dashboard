@@ -1,0 +1,209 @@
+/* 🌐 Container */
+.history-container {
+  padding: 1.5rem;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-container.light {
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+.history-container.dark {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+/* 🧭 Title */
+.history-container h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* 🧭 FILTER PANEL */
+.filter-panel {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr 0.7fr auto;
+  gap: 1rem;
+  align-items: center;
+  background: var(--filter-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+.history-container.light .filter-panel {
+  background-color: white;
+}
+
+.history-container.dark .filter-panel {
+  background-color: #1f1f1f;
+}
+
+/* Filter groups */
+.filter-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.filter-group input[type="date"] {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.filter-group input[type="date"]:focus {
+  outline: none;
+  border-color: #4b7bec;
+}
+
+/* Multi-site selection */
+.multi-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: 90px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.03);
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.site-option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-actions button {
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.filter-actions button:hover {
+  opacity: 0.9;
+}
+
+.filter-actions .reset-btn {
+  background-color: #fc5c65;
+  color: white;
+}
+
+.filter-actions button:first-child {
+  background-color: #4b7bec;
+  color: white;
+}
+
+/* 📈 CHARTS SECTION */
+.charts-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.chart-card {
+  background-color: white;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease;
+}
+
+.history-container.dark .chart-card {
+  background-color: #1e1e1e;
+}
+
+.chart-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+/* Tooltip */
+.custom-tooltip {
+  background-color: #fff;
+  padding: 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 0.85rem;
+}
+
+.history-container.dark .custom-tooltip {
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+}
+
+/* 📝 LOG LIST */
+.history-log-list {
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-container.dark .history-log-list {
+  background-color: #1e1e1e;
+}
+
+.history-log-list h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.log-item {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.history-container.dark .log-item {
+  border-bottom: 1px solid #333;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.no-logs {
+  text-align: center;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 900px) {
+  .filter-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+}

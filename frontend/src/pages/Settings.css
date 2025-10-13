@@ -1,0 +1,213 @@
+/* ===============================
+   THEME VARIABLES
+=============================== */
+:root {
+  --bg-color: #f8fafc;
+  --sidebar-bg: #ffffff;
+  --text-color: #1f2937;
+  --accent-color: #2563eb;
+  --border-color: #d1d5db;
+  --card-bg: #f9fafb;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0d1117;
+  --sidebar-bg: #1f2937;
+  --text-color: #e6edf3;
+  --accent-color: #2563eb;
+  --border-color: #333;
+  --card-bg: #111827;
+}
+
+/* ===============================
+   SETTINGS CONTAINER
+=============================== */
+.settings-container {
+  display: flex;
+  min-height: calc(100vh - 60px);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===============================
+   SIDEBAR
+=============================== */
+.settings-sidebar {
+  width: 220px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.settings-sidebar button {
+  margin-bottom: 1rem;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background: none;
+  border: none;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.settings-sidebar button:hover,
+.settings-sidebar button.active {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ===============================
+   MAIN CONTENT
+=============================== */
+.settings-main {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.settings-main h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+/* ===============================
+   FORM GROUPS
+=============================== */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--sidebar-bg);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.form-group select:hover,
+.form-group select:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* ===============================
+   UPDATE ENTRIES
+=============================== */
+.update-entry {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.update-entry strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--accent-color);
+}
+
+.update-entry ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.update-entry li {
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+/* ===============================
+   FAQ ENTRIES
+=============================== */
+.faq-entry {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-entry strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: var(--accent-color);
+}
+
+.faq-entry p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+/* ===============================
+   SCROLLBAR
+=============================== */
+.settings-main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.settings-main::-webkit-scrollbar-track {
+  background: var(--sidebar-bg);
+  border-radius: 4px;
+}
+
+.settings-main::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+=============================== */
+@media (max-width: 768px) {
+  .settings-container {
+    flex-direction: column;
+  }
+
+  .settings-sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .settings-sidebar button {
+    flex: 1;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,124 @@
+:root {
+  --bg: #0d1117;
+  --card: #12151a;
+  --text: #e6edf3;
+  --muted: #98a0a8;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #2563eb;
+}
+
+body[data-theme="light"] {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #000000;
+  --muted: #555555;
+  --border: rgba(0, 0, 0, 0.1);
+}
+
+.user-mgmt-page {
+  background: var(--bg);
+  padding: 20px;
+  min-height: 100vh;
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.page-header {
+  margin-bottom: 18px;
+}
+
+.page-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.page-header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Table container */
+.table-container {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+  transition: background 0.3s;
+}
+
+/* Table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.user-table th,
+.user-table td {
+  text-align: left;
+  padding: 12px 14px;
+}
+
+.user-table th {
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.user-table td {
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.user-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Role badges */
+.role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.admin-role {
+  background: #ef4444;
+  color: #fff;
+}
+
+.support-role {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.engineer-role {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.user-role {
+  background: #10b981;
+  color: #fff;
+}
+
+.no-users {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .user-table th,
+  .user-table td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+}

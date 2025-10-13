@@ -1,0 +1,51 @@
+.traffic-monitoring-container {
+  padding: 1rem;
+  border-radius: 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.traffic-monitoring-container.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.traffic-monitoring-container.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.traffic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.traffic-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.traffic-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.traffic-select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: inherit;
+  color: inherit;
+}
+
+.traffic-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.no-data-text {
+  text-align: center;
+  font-style: italic;
+  opacity: 0.7;
+}

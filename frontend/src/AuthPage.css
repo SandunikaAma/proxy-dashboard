@@ -1,0 +1,107 @@
+/* General Page */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1117; /* dark cyber background */
+  font-family: Arial, sans-serif;
+  color: #e6edf3;
+}
+
+/* Card */
+.auth-card {
+  background: #161b22;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.2);
+  width: 350px;
+  border: 1px solid #00ffff33;
+}
+
+/* Title */
+.auth-title {
+  text-align: center;
+  color: #00ffff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Input */
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #e6edf3;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.auth-input:focus {
+  border: 1px solid #00ffff;
+  box-shadow: 0px 0px 8px #00ffff55;
+}
+
+/* Select dropdown */
+.auth-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #e6edf3;
+  font-size: 14px;
+  margin: 10px 0;
+  outline: none;
+}
+
+.auth-select:focus {
+  border: 1px solid #00ffff;
+  box-shadow: 0px 0px 8px #00ffff55;
+}
+
+/* Button */
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  background: #00ffff;
+  color: #0d1117;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-btn:hover {
+  background: #00cccc;
+  box-shadow: 0px 0px 12px #00ffffaa;
+}
+
+/* Links */
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 13px;
+  color: #8b949e;
+}
+
+.auth-links button {
+  background: none;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.auth-links button:hover {
+  color: #00ffff;
+}

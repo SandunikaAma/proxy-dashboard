@@ -1,0 +1,269 @@
+/* ============================================
+   GLOBAL THEME VARIABLES
+============================================ */
+:root {
+  --bg-color: #f8fafc;
+  --sidebar-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --card-bg: #f9fafb;
+  --text-color: #1f2937;
+  --text-muted: #4b5563;
+  --accent-color: #2563eb;
+  --border-color: #d1d5db;
+  --hover-bg: #f1f5f9;
+  --table-header-bg: #e5e7eb;
+  --table-row-hover: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0d1117;
+  --sidebar-bg: #1f2937;
+  --navbar-bg: #1f2937;
+  --card-bg: #111827;
+  --text-color: #e6edf3;
+  --text-muted: #9ca3af;
+  --accent-color: #2563eb;
+  --border-color: #333;
+  --hover-bg: #1e293b;
+  --table-header-bg: #1e293b;
+  --table-row-hover: #2d3748;
+}
+
+/* ============================================
+   GLOBAL STYLES
+============================================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", "Segoe UI", Geneva, Tahoma, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   NAVBAR
+============================================ */
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .nav-links {
+  display: flex;
+  gap: 1rem;
+}
+.navbar a {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: var(--text-color);
+}
+.navbar a.active, .navbar a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ============================================
+   SIDEBAR
+============================================ */
+.sidebar {
+  width: 240px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.sidebar a {
+  padding: 10px 15px;
+  color: var(--text-color);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* ============================================
+   PAGE LAYOUTS
+============================================ */
+.main-content {
+  margin-left: 240px;
+  padding: 2rem;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+/* ============================================
+   CARDS (used in Overview, Alerts, etc.)
+============================================ */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  background-color: var(--hover-bg);
+}
+
+/* ============================================
+   TABLES (User Management, Logs, History)
+============================================ */
+.table-container {
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+}
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  color: var(--text-color);
+}
+th {
+  background-color: var(--table-header-bg);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+tr {
+  border-bottom: 1px solid var(--border-color);
+}
+tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+/* ============================================
+   FORMS (used in Settings, Filters, etc.)
+============================================ */
+input, select, textarea {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #1e40af;
+}
+
+/* ============================================
+   CHART / GRAPH CONTAINERS
+============================================ */
+.chart-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+/* ============================================
+   ALERTS / LOGS
+============================================ */
+.alert-entry {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-left: 4px solid var(--accent-color);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+.alert-entry.warning {
+  border-left-color: #facc15;
+}
+.alert-entry.error {
+  border-left-color: #ef4444;
+}
+
+/* ============================================
+   HISTORY / RECOMMENDATIONS CARDS
+============================================ */
+.history-card, .recommend-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+.history-card:hover, .recommend-card:hover {
+  background-color: var(--hover-bg);
+}
+
+/* ============================================
+   SCROLLBARS
+============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .navbar {
+    flex-wrap: wrap;
+  }
+}

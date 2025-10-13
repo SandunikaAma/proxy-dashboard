@@ -1,0 +1,35 @@
+.dashboard-container {
+  background: #0d1117;
+  color: #e6edf3;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #00ffff55;
+}
+
+.nav-title {
+  color: #08bb23;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  color: #e6edf3;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffff;
+}
+
+.content {
+  padding: 2rem;
+}

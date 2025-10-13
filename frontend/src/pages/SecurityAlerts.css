@@ -1,0 +1,38 @@
+.security-alerts-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.alerts-panel, .saved-alerts-panel {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.alerts-panel h2, .saved-alerts-panel h2 {
+  margin-bottom: 15px;
+  color: #000; /* ensures readability in light mode */
+}
+
+.alert-item, .log-item, .saved-alert-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.alert-item button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1976D2;
+  font-size: 16px;
+}
+
+.alert-item button:hover {
+  color: #004ba0;
+}
