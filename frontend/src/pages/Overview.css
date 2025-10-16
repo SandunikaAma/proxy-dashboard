@@ -66,6 +66,76 @@ ul li {
     
 }
 
+/* ============================
+   SPEEDTEST CARD STYLING
+============================ */
+.speedtest-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 320px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+.speedtest-card h3 {
+  color: black; /* Light mode */
+}
+
+/* Dark mode */
+[data-theme="dark"] .speedtest-card h3 {
+  color: white;
+}
+
+.speedtest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--hover-bg);
+}
+
+/* Button styling */
+.speedtest-btn {
+  margin-top: 12px;
+  background: var(--accent-color);
+  color: rgb(212, 20, 20);
+  border: none;
+  border-radius: 50%;
+  width: 130px;
+  height: 80px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.speedtest-btn:hover {
+  background-color: #1e40af;
+  transform: scale(1.05);
+}
+
+.speedtest-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.speed-results {
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Ookla-style small branding text */
+.speedtest-card::after {
+  content: "Speedtest by Ookla";
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
 /* Responsive adjustment for smaller screens */
 @media (max-width: 768px) {
   .overview-grid {
