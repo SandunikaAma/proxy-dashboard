@@ -12,8 +12,15 @@ import "./DashboardLayout.css";
 export default function DashboardLayout({ user }) {
   const [version, setVersion] = useState("1");
   const [theme, setTheme] = useState("light");
+  const [userInfo, setUserInfo] = useState({ username: "", role: "" });
+  const [speedData, setSpeedData] = useState({
+    ip: "",
+    download: null,
+    upload: null,
+    loading: false,
+  });
 
-  // Fetch settings (version + theme) on mount
+  // Fetch settings
   useEffect(() => {
     if (!user) return;
     fetch(`http://localhost:3004/api/settings/${user}`)
@@ -30,7 +37,23 @@ export default function DashboardLayout({ user }) {
       });
   }, [user]);
 
-  // Apply theme immediately when it changes
+  // Fetch logged-in user info
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    fetch("http://localhost:3004/api/user/status", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          setUserInfo({ username: data.username, role: data.role });
+        }
+      });
+  }, []);
+
+
+  // Apply theme immediately
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
@@ -46,13 +69,23 @@ export default function DashboardLayout({ user }) {
           <Link to="users">User Management</Link>
           <Link to="alerts">Security Alerts & Logs</Link>
           <Link to="history">History View</Link>
-          
           {version === "2" && <Link to="recommendations">Recommendations</Link>}
           <Link to="settings">Settings</Link>
         </div>
       </nav>
 
-      {/* Content */}
+      {/* Logged-in User Section */}
+      {userInfo.username && (
+        <div className="user-info-banner">
+          <h3>
+            👤 Logged in as: <span>{userInfo.username}</span>{" "}
+            <small>({userInfo.role})</small>
+          </h3>
+        </div>
+      )}
+
+
+      {/* Main Content */}
       <div className="content">
         <Routes>
           <Route path="" element={<Overview />} />
