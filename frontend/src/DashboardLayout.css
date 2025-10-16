@@ -1,35 +1,49 @@
-.dashboard-container {
-  background: #0d1117;
-  color: #e6edf3;
-  min-height: 100vh;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #161b22;
-  padding: 1rem 2rem;
+.user-info-banner {
+  text-align: center;
+  background: #151b22;
+  padding: 1rem;
   border-bottom: 1px solid #00ffff55;
+  color: #00ffb7;
 }
 
-.nav-title {
-  color: #08bb23;
-  font-size: 20px;
+.user-info-banner span {
   font-weight: bold;
+  color: #08bb23;
 }
 
-.nav-links a {
-  margin-left: 20px;
+.speedtest-card {
+  margin: 20px auto;
+  max-width: 400px;
+  background: #161b22;
+  border: 1px solid #00ffff33;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
   color: #e6edf3;
-  text-decoration: none;
-  transition: color 0.3s;
+  box-shadow: 0 0 10px #00ffff22;
 }
 
-.nav-links a:hover {
-  color: #00ffff;
+.speedtest-card h4 {
+  color: #08bb23;
+  margin-bottom: 10px;
 }
 
-.content {
-  padding: 2rem;
+.speedtest-btn {
+  background: #00ffff33;
+  border: 1px solid #00ffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.speedtest-btn:hover {
+  background: #00ffff66;
+}
+
+.speed-results {
+  margin-top: 15px;
+  line-height: 1.6;
 }
