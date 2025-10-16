@@ -1,4 +1,3 @@
-// System/frontend/src/pages/Overview.jsx
 import React, { useEffect, useState, useMemo } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import { io } from "socket.io-client";
@@ -38,8 +37,13 @@ export default function Overview({ authToken }) {
   const [topSites, setTopSites] = useState([]);
   const [uptimeSpark, setUptimeSpark] = useState([]);
   const [uptimePercentage, setUptimePercentage] = useState(100);
-  const [perfBars, setPerfBars] = useState([]);
   const [errorLogs, setErrorLogs] = useState([]);
+  const [speedData, setSpeedData] = useState({
+    ip: "",
+    download: 0,
+    upload: 0,
+    loading: false,
+  });
 
   // Fetch initial data
   useEffect(() => {
@@ -59,7 +63,6 @@ export default function Overview({ authToken }) {
       if (data) {
         setUptimeSpark(Array.isArray(data.spark) ? data.spark : []);
         setUptimePercentage(data.percentage || 100);
-        setPerfBars(Array.isArray(data.perfBars) ? data.perfBars : []);
       }
     });
     safeFetch("http://localhost:3004/api/active-users", (data) => {
@@ -67,7 +70,7 @@ export default function Overview({ authToken }) {
     });
   }, [authToken]);
 
-  // Real-time updates
+  // Real-time updates via Socket.IO
   useEffect(() => {
     if (authToken) socket.emit("user:login", authToken);
 
@@ -86,7 +89,6 @@ export default function Overview({ authToken }) {
       if (u.spark) setUptimeSpark((prev) => [...prev.slice(-59), ...u.spark].slice(-120));
       if (u.percentage) setUptimePercentage(u.percentage);
     });
-    socket.on("perf:update", (p) => Array.isArray(p) && setPerfBars(p));
     socket.on("log:new", (log) => setErrorLogs((prev) => [log, ...prev].slice(0, 50)));
 
     return () => socket.removeAllListeners();
@@ -101,7 +103,41 @@ export default function Overview({ authToken }) {
     }
   };
 
-  // Charts
+  // Perform actual speed test (Ookla-style)
+  const runSpeedTest = async () => {
+    try {
+      setSpeedData({ ...speedData, loading: true });
+      const ipRes = await fetch("https://api.ipify.org?format=json");
+      const ipData = await ipRes.json();
+
+      // Download test
+      const start = Date.now();
+      await fetch("https://speed.cloudflare.com/__down?bytes=10000000");
+      const end = Date.now();
+      const downloadMbps = (80 / ((end - start) / 1000)).toFixed(2);
+
+      // Upload test
+      const uploadStart = Date.now();
+      await fetch("https://speed.cloudflare.com/__up", {
+        method: "POST",
+        body: new Blob(["x".repeat(1000000)]),
+      });
+      const uploadEnd = Date.now();
+      const uploadMbps = (8 / ((uploadEnd - uploadStart) / 1000)).toFixed(2);
+
+      setSpeedData({
+        ip: ipData.ip,
+        download: downloadMbps,
+        upload: uploadMbps,
+        loading: false,
+      });
+    } catch (err) {
+      console.error("Speedtest failed:", err);
+      setSpeedData({ ip: "Error", download: 0, upload: 0, loading: false });
+    }
+  };
+
+  // Chart configs
   const trafficChart = useMemo(() => {
     const labels = trafficSeries.map((p) => fmtTime(p.ts));
     const requests = trafficSeries.map((p) => p.requests);
@@ -191,7 +227,6 @@ export default function Overview({ authToken }) {
     return (
       <div className="card overview-card">
         <h3>Security Alerts</h3>
-        <h2>❗️</h2>
         <div className="alerts-count">{alertsList.length}</div>
       </div>
     );
@@ -220,7 +255,11 @@ export default function Overview({ authToken }) {
         },
       ],
     };
-    const options = { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } };
+    const options = {
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { display: false }, y: { display: false } },
+    };
 
     return (
       <div className="card overview-card">
@@ -239,8 +278,8 @@ export default function Overview({ authToken }) {
             <tr><th>Timestamp</th><th>Message</th></tr>
           </thead>
           <tbody>
-            {errorLogs.slice(0, 8).map((l) => (
-              <tr key={l.id || l.ts}><td>{fmtTime(l.ts || l.timestamp)}</td><td>{l.message}</td></tr>
+            {errorLogs.slice(0, 8).map((l, i) => (
+              <tr key={i}><td>{fmtTime(l.ts || l.timestamp)}</td><td>{l.message}</td></tr>
             ))}
           </tbody>
         </table>
@@ -248,21 +287,20 @@ export default function Overview({ authToken }) {
     );
   }
 
-  //  Speedtest Card
   function SpeedtestCard() {
     return (
       <div className="card overview-card speedtest-card">
-        <h3>Speedtest </h3>
-        <iframe
-          title="Fast Speedtest"
-          src="https://fast.com"
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-            borderRadius: "12px",
-          }}
-        ></iframe>
+        <h3>Speedtest by Ookla</h3>
+        {speedData.ip && <p>Router IP: {speedData.ip}</p>}
+        <button className="speedtest-btn" onClick={runSpeedTest} disabled={speedData.loading}>
+          {speedData.loading ? "Testing..." : "GO"}
+        </button>
+        {speedData.download && (
+          <div className="speed-results">
+            <p>⬇ Download Speed: {speedData.download} Mbps</p>
+            <p>⬆ Upload Speed: {speedData.upload} Mbps</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -288,13 +326,13 @@ export default function Overview({ authToken }) {
       <div className="card overview-card">
         <h3>Quick Alerts</h3>
         <ul>
-          {alertsList.slice(0, 6).map((a) => (
-            <li key={a.id}>{a.message}</li>
+          {alertsList.slice(0, 6).map((a, i) => (
+            <li key={i}>{a.message}</li>
           ))}
         </ul>
       </div>
-     
       <SpeedtestCard />
     </div>
   );
 }
+
